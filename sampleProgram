@@ -1,0 +1,7 @@
+x = 10
+factorial = 1
+
+while (x > 0) {
+      factorial *= x
+      x--
+}
