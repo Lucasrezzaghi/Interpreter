@@ -169,8 +169,3 @@ factor toks =
         in
           (While cond stmt, toks'')
       _ -> error $ "Parse error on token: " ++ show toks
-
-
-
-
-
