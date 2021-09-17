@@ -13,6 +13,7 @@ data Token = TokOp Operator
            | TokRBracket
            | TokIdent String
            | TokNum Int
+           | TokIf
            | TokWhile
            | TokFor
            | TokEnd
@@ -64,6 +65,7 @@ getString cs =
     case () of
       () | name == "while" -> TokWhile : tokenize cs'
          | name == "true" -> TokTrue : tokenize cs'
+         | name == "if" -> TokIf : tokenize cs'
          | name == "false" -> TokFalse : tokenize cs'
          | name == "not" -> TokOp Not : tokenize cs'
          | name == "for" -> TokFor : tokenize cs'

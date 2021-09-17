@@ -57,6 +57,16 @@ evaluate (While cond stmt) =
       else
         return 0
 
+evaluate (If cond stmt) =
+  do
+    b <- evaluateCond cond
+    if b
+      then
+        do
+          evaluate stmt
+      else
+        return 0
+        
 evaluateCond :: Condition -> State Dict Bool
 
 evaluateCond TRUE = return True

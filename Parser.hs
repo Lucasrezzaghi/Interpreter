@@ -9,6 +9,7 @@ data Expression = BinOp Operator Expression Expression
                   | Var String
                   | Sequence [Expression]
                   | While Condition Expression
+                  | If Condition Expression
                   deriving Show
 
 data Condition = Compare Operator Expression Expression
@@ -162,6 +163,12 @@ factor toks =
           (exps, toks') = parseSeq (accept toks)
         in
           (Sequence exps, toks')
+      TokIf ->
+        let
+          (cond, toks') = condition (accept toks)
+          (stmt, toks'') = expression toks'
+        in
+          (While cond stmt, toks'')
       TokWhile ->
         let
           (cond, toks') = condition (accept toks)
